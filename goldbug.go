@@ -5,9 +5,9 @@ import (
 	"os"
 )
 
-func SetDefaultLoggerText() {
+func SetDefaultLoggerText(level slog.Level) {
 	logLevel := &slog.LevelVar{} // INFO
-	logLevel.Set(slog.LevelDebug)
+	logLevel.Set(level)
 	opts := slog.HandlerOptions{
 		AddSource: true,
 		Level:     logLevel,
