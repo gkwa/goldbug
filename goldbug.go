@@ -6,6 +6,13 @@ import (
 	"path/filepath"
 )
 
+func setPartialPath(source *slog.Source) {
+	fileName := filepath.Base(source.File)
+	parentDir := filepath.Base(filepath.Dir(source.File))
+
+	source.File = filepath.Join(parentDir, fileName)
+}
+
 func SetDefaultLoggerText(level slog.Level) {
 	logLevel := &slog.LevelVar{} // INFO
 	logLevel.Set(level)
@@ -19,9 +26,7 @@ func SetDefaultLoggerText(level slog.Level) {
 			if a.Key == slog.SourceKey {
 				source, _ := a.Value.Any().(*slog.Source)
 				if source != nil {
-					fileName := filepath.Base(source.File)
-					parentDir := filepath.Base(filepath.Dir(source.File))
-					source.File = filepath.Join(parentDir, fileName)
+					setPartialPath(source)
 				}
 			}
 			return a
@@ -42,9 +47,7 @@ func SetDefaultLoggerJson(level slog.Level) {
 			if a.Key == slog.SourceKey {
 				source, _ := a.Value.Any().(*slog.Source)
 				if source != nil {
-					fileName := filepath.Base(source.File)
-					parentDir := filepath.Base(filepath.Dir(source.File))
-					source.File = filepath.Join(parentDir, fileName)
+					setPartialPath(source)
 				}
 			}
 			return a
