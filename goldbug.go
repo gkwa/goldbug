@@ -27,9 +27,9 @@ func SetDefaultLoggerText(level slog.Level) {
 			return a
 		},
 	}
-	handler1 := slog.NewTextHandler(os.Stderr, &opts)
+	handler := slog.NewTextHandler(os.Stderr, &opts)
 
-	slog.SetDefault(slog.New(handler1))
+	slog.SetDefault(slog.New(handler))
 }
 
 func SetDefaultLoggerJson(level slog.Level) {
@@ -50,7 +50,7 @@ func SetDefaultLoggerJson(level slog.Level) {
 			return a
 		},
 	}
-	handler1 := slog.NewJSONHandler(os.Stderr, &opts)
+	handler := slog.NewJSONHandler(os.Stderr, &opts)
 
-	slog.SetDefault(slog.New(handler1))
+	slog.SetDefault(slog.New(handler))
 }
