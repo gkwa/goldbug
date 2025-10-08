@@ -2,4 +2,4 @@ module github.com/taylormonacelli/goldbug
 
 go 1.21
 
-toolchain go1.25.1
+toolchain go1.25.2
